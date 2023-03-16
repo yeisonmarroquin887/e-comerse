@@ -15,10 +15,10 @@ async function extractingproducts(){
 }
 
 
-function priproducts(DB){
+function priproducts(products){
     const productHTML = document.querySelector(".products")
     let html = ""
-    for(const product of DB.products){
+    for(const product of products){
         html += `
         <div class="product">
     <div class="product__img">
@@ -36,7 +36,7 @@ function priproducts(DB){
     <span>${product.category}</span>: ${product.quantity}</span>
   
     </h4>
-        <h3>${product.name}</h3>
+    <h3 class="lett">${product.name}</h3>
        
     </div>
 </div>
@@ -136,7 +136,7 @@ function handelproductsincarts(DB){
             }
             if(DB.carts[productfin.id]){
                 if(productfin.quantity===DB.carts[productfin.id].amount){
-                    return alert("agotado...");
+                    return alert("Lo siento no tenemos mas este producto en bodega se nos ha agotado...");
                 }
          DB.carts[id].amount++;
                 }
@@ -198,14 +198,14 @@ function incremtpro(DB){
              currentproducts.push(product)
          }
      }
-     DB.products = currentproducts
+     products = currentproducts
      DB.carts = {}
      window.localStorage.setItem("products", JSON.stringify(DB.products));
      window.localStorage.setItem("carts", JSON.stringify(DB.carts));
      printotal(DB);
      prinproducstcarts(DB);
-     priproducts(DB);
-     cantiofproducts(DB)
+     priproducts(products);
+     cantiofproducts(DB);
     })
 }
 function cantiofproducts(DB){
@@ -217,25 +217,22 @@ function cantiofproducts(DB){
     }
     amountHTML.textContent = amount;
 }
-
-
-
 function handleFilterButtons(DB, productsFilter) {
-    const buttonsHTML = document.querySelectorAll(".distri");
+    const buttonsHTML = document.querySelectorAll(".filters .filter");
     const productsHTML = document.querySelector(".products");
 
     for (const button of buttonsHTML) {
         button.addEventListener("click", (d) => {
-            let category = d.currentTarget.dataset.product.category;
+            let category = d.currentTarget.firstElementChild.textContent;
              
-            if (category === "all") {
+            if (category === "Show all") {
                 productsFilter = DB.products;
             } else {
                 productsFilter = DB.products.filter(
                     (product) => product.category === category
                 );
             }
-
+           
             priproducts(productsFilter);
 
             // productsHTML.style.animation =
@@ -243,7 +240,41 @@ function handleFilterButtons(DB, productsFilter) {
         });
     }
 }
-   
+
+function barracolors (){
+    const navbar = document.querySelector(".barra");
+
+    window.addEventListener("scroll", function () {
+        if (window.scrollY > 40) {
+            navbar.classList.add("barra__active");
+        } else {
+            navbar.classList.remove("barra__active");
+        }
+    });
+}
+function handleTheme() {
+    const iconTheme = document.querySelector(".bx-moon");
+
+    iconTheme.addEventListener("click", function () {
+        document.body.classList.toggle("dark-theme");
+    });
+}
+
+/*function active(){
+    const buttonsHTML = document.querySelectorAll("filters.filter");
+
+    for (const button of buttonsHTML) {
+        button.addEventListener("click", () => {
+            for (const button of buttonsHTML) {
+                button.classList.remove("filter__active");
+            }
+            button.classList.add("filter__active mixitup-control-active ");
+        });
+    }
+}*/
+
+
+
 
 //se encarga de anrrancarme el codigo
 async function main(){
@@ -252,10 +283,12 @@ async function main(){
         (await extractingproducts()),
      carts: JSON.parse(window.localStorage.getItem("carts")) || {}
     }; 
-    let productsFilter = DB.products
-
-    handleFilterButtons(DB, productsFilter)
-    priproducts(DB);
+    let productsFilter = DB.products;
+    
+    handleTheme();
+    barracolors ();
+    handleFilterButtons(DB, productsFilter);
+    priproducts(productsFilter);
     hedshowld();
     handleShowcarts(DB);
     prinproducstcarts(DB);
@@ -264,14 +297,22 @@ async function main(){
     incremtpro(DB);
     cantiofproducts(DB);
     ingresomenu();
-   
+    
+  
+     
     
 
     }
 main()
 
 
-
+/*
+NOTA
+Lo logre talves no sea el mejor trabajo de todos talves me faltaron algunas cosas pero lo di todo en esta noche asi lloviendo y hasta sin lus
+lo di todo gracias profe brayan por enseñranos todo para empezar a nacer como programador lemando este trabajo un poco incompleto pero 
+no fue x falta de conocimiento de maquetacion sino xq esta noche llovio muchisimo pero no me rendi acabo a las 5:32 AM y seguire de ahora en adelante danola
+toda por este sueño de ser un buen programador.....s
+ */
 
 
 

@@ -24,15 +24,32 @@
     box-sizing: border-box;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
-body{
-    padding: 0rem;
+
+
+
+body.dark-theme {
+    --first-color: hsl(182, 53%, 74%);
+    --button-color: hsl(240, 9%, 7%);
+    --button-color-alt: hsl(0, 0%, 28%);
+    --card-color: hsla(246, 16%, 5%);
+    --title-color: hsl(0, 0%, 95%);
+    --text-color: hsl(0, 0%, 75%);
+    --body-color: hsl(249, 19%, 14%);
+    --container-color: hsl(246, 16%, 12%);
+    --border-color: hsl(0, 0%, 20%);
 }
+body {
+    background-color: var(--body-color);
+    transition: color .5s,background-color .5s;
+}
+
 
 img{
     width: 100%;
     display: block;
 
 }
+
 
 
 .store{
@@ -50,7 +67,12 @@ img{
     width: 100%;
     z-index: 99;
     display: flex;
-    transition: background-color .5s ease-in-out, padding 0.5s ease-in-out;
+    transition: background-color .4s ease-in-out, padding 0.3s ease-in-out;
+    
+}
+.barra__active{
+    background-color: var(--container-color);
+    box-shadow: var(--shadow-general);
 }
 .barra-background {
     background-color: var(--backgroundColorOne);
@@ -64,6 +86,7 @@ img{
         justify-content: space-between;
         align-items: center;
         padding: 0 1rem;
+       
 }
 
 .vie_1{
@@ -72,6 +95,7 @@ img{
 .stor{
     font-size: 18px;
     font-weight: 500;
+    color: var(--text-color);
 }
 .bary{
     
@@ -89,10 +113,11 @@ img{
     gap: 1rem;
     width: 100%;
     justify-content: flex-start;
-
+   
 
 
 }
+
 .amounts{
     width: 0.1rem;
     height: 0.1rem;
@@ -110,6 +135,10 @@ img{
     top: 0.8rem;
 }
 
+#tras{
+    color: rgba(0, 0, 0, 0);
+}
+
 
 
 .car{
@@ -123,16 +152,16 @@ img{
     max-width: 260px;
     margin: auto;
     display: flex;
-
+    color: var(--title-color);
 }
 .car > i{
-    padding-left: 1px;
+    padding-left: 0.1px;
     width: 30%;
     text-align: center;
     font-size: 25px;
     cursor: pointer;
     position: relative;
-   
+   right: 3rem;
    
 }
 
@@ -161,7 +190,9 @@ img{
     flex-direction: column;
     padding: 0rem 2rem;
     height: 3rem;
-    gap: 1rem
+    gap: 1rem;
+    color: var(--title-color);
+    
 }
 span{
     color: var(--first-color);
@@ -169,17 +200,23 @@ span{
     font-weight: 700;
 }
 .bont{
-    background-color: var(--title-color);
+    background-color: var(--button-color);
 display: block;
 text-align: center;
 width: 9rem;
 padding: 1rem;
 border-radius: 1rem;
-
+color: var(--text-color-light);
+}
+.bont:hover{
+    background-color: var(--first-color);
 }
 a{
     text-decoration-line: none;
-    color: black;
+    color: var(--text-color-light);
+}
+a:hover{
+    color: var(--first-color);
 }
 .menu{
     height: calc(100vh - var(--h-vie));
@@ -188,7 +225,7 @@ a{
     top: var(--h-vie);
     right: -100%;
     padding: 1rem;
-    background-color: rgb(238, 231, 231) ;
+    background-color: var(--first-color) ;
     display: flex;
     flex-direction: column;
     padding: 1rem;
@@ -206,6 +243,7 @@ a{
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: var(--body-color);
 }
 
 
@@ -216,7 +254,7 @@ a{
     top: var(--h-vie);
     right: -100%;
     padding: 1rem;
-    background-color: rgb(238, 231, 231) ;
+    background-color:var(--body-color) ;
     display: flex;
     flex-direction: column;
     padding: 1rem;
@@ -227,17 +265,10 @@ a{
 .run__show{
     right: 0;
 }
-#agre span{
-    background-color: red;
-    color:white;
-    align-items: end;
-    padding: 0.5rem;
-    border-radius:50%;
-    
-}
+
 .pro{
    height: 85%;
-   color: rgb(5, 5, 5);
+   color:var(--title-color);
    overflow-y: scroll;
    display: flex;
    flex-direction: column;
@@ -254,10 +285,10 @@ a{
     
 }
 .tien{
-    background-color: var(--text-color-light);
+    background-color: var(--body-color);
     border-radius: 1rem;
     width: 25%;
-   
+   background-color: var(--card-color);
 }
 .pm{
     width: 60%;
@@ -265,14 +296,13 @@ a{
 }
 .tien__body{
   width: 60%;
-  
 }
 
 .pro i{
     text-decoration: none;
     cursor: pointer;
     color: black;
-    background-color: rgba(0, 0, 0, 0.151);
+    
     
 }
 .Tot{
@@ -289,14 +319,14 @@ a{
     
 }
 .canti{
-    color: rgb(207, 8, 8);
+    color: var(--first-color);
 }
 .dine{
-    color: black;
+    color: var(--text-color);
 }
 .btn{
- background-color: black;
- color: blanchedalmond;
+ background-color: var(--button-color);
+ color: var(--first-color);
  padding: 1rem;
  max-width: 1024px;
  width: 100%;
@@ -318,7 +348,7 @@ a{
     align-items: center;
     font-size: 10px;
     font-weight: 100;
-    color: var(--button-color-alt); 
+    color:  var(--button-color-alt);
     
 }
 
@@ -329,57 +359,90 @@ a{
     max-width: 1024px;
     margin: 0 auto;
     gap: 2rem;
-    
+    overflow: hidden;
+   
     
 }
 .product{
     border-radius: 1rem;
     box-shadow: 0 1rem 3rem rgba(0,0,0,.175)!important;
     padding: 1rem;
+   
 }
 .product__img{
     background-color: rgba(0, 0, 0, 0.103);
     border-radius: 1rem;
+    transition: 0.5s;
+}
+.product__img:hover{
+    opacity: 0.5;
 }
 .product__info{
     padding: 1rem;
-    
+    color: var(--text-color);
 }
 span{
     font-size: 1rem;
+}
+#agre{
+    text-align: end;
+    cursor: pointer ;
+}
+#agre span{
+    background-color: var(--first-color);
+    color:var(--title-color);
+    align-items: end;
+    padding: 0.5rem;
+    border-radius:50%;
+    
 }
 .product__info .bx-plus{
     box-shadow: 0 1rem 3rem rgba(29, 8, 8, 0.301)!important;
     background-color: rgba(129, 106, 126, 0.582);
     border-radius: 50%;
     padding: 7px;
-    color: aliceblue;
+    color: var(--text-color);
     font-size: 25px;
     font-weight: 560;
+    transition: background-color .6s;
+   
+}
+.product__info .bx-plus:hover{
+    background-color: var(--first-color);
+}
+
+
+#todo{
+    padding: 8rem;
     
 }
-#agre{
-    text-align: end;
-    cursor: pointer;
-}
-.distri{
-    padding-top: 18rem;
+.filters{
+    padding-top: 1rem;
     margin: auto;
     max-width:270px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
+    
 }
-.distri_1{
+.filter{
     text-align: center;
     cursor: pointer;
     padding: .5rem;
     transition: background-color .5s;
     box-sizing: var(--shadow-general);
     border-radius: 11px;
-    background-color: red;
-
+    box-sizing: var(--shadow-general);
+    color: var(--title-color);
+    background-color: var(--button-color);
+    color: var(--text-color-light);
 }
+
+.filter:hover{
+    background-color: var(--first-color);
+    color: var(--title-color);
+}
+
 ul{
     list-style: none;
 }
@@ -404,52 +467,60 @@ text-align: center;
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    color: var(--title-color);
 }
+
 #present{
     margin-top: 0rem;
     background-color: var(--first-color);
-    color: var(--container-color);
+    color: var(--title-color);
     text-align: center;
     padding: 3rem;
     border-radius: 1rem;
    
+}
+.email{
+    color:var(--title-color)
 }
 footer{
     padding: 2rem;
 }
 .social{
     display: flex;
+    
+}
+a{
+    color: var(--text-color);;
 }
 .info{
     padding: 2rem 3.5rem;
     width: 100%;
     display: grid;
     gap: 1.5rem;
-    background-color: var(--backgroundColorThree);
+    background-color: var(--card-color);
     transition: background-color 0.3s ease-in-out, color 0.1s;
-   
+    color: var(--title-color);
+}    
+
+.lett{
+    color:var(--title-color);
+    transition: background-color 10s;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.lett:hover{
+    color: var(--first-color)
+}
 
 @media(min-width: 700px){
     img{
         width: 100%;
         display: block;
     
+    }
+    #tras{
+        color: var(--text-color-light);
+    }
+    #tras:hover{
+        color: var(--first-color);
     }
    
     
@@ -462,7 +533,22 @@ footer{
     }
    
    
-  
+    .barra{
+        max-width: 100%;
+        margin: auto;
+        position: fixed;
+        top: 0;
+        height: 6rem;
+        width: 100%;
+        z-index: 99;
+        display: flex;
+        transition: background-color .4s ease-in-out, padding 0.3s ease-in-out;
+        
+    }
+.barra__active{
+    background-color: var(--card-color);
+    box-shadow: var(--shadow-general);
+}
     
     .start__1{
         display: flex;
@@ -553,14 +639,18 @@ footer{
     border-radius:50%;
     font-size: 15px;
 }
+#todo{
+    padding-top: 0rem;
+}
 
-.distri{
+
+.filters{
 display: flex;
 max-width: 45rem;
 padding: 4.5rem;
 
 }
-.distri_1{
+.filter{
     height: 2.5rem;
     width: 100rem;
     text-align: center;
@@ -678,6 +768,13 @@ text-align: center;
     margin: auto;
     display: flex;
 
+}
+.bxs-dashboard{
+   left: 300rem;
+     color:rgba(14, 9, 1, 0.014)
+}
+.bx-moon{
+    left: 1rem;
 }
 .car > i{
     padding-left: 1px;
